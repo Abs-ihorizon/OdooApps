@@ -1,0 +1,25 @@
+{
+    'name': 'BRS Report',
+    'author': 'Affinity Business Suite',
+    'website': 'https://affinitysuite.net',
+    'support': 'info@affinitysuite.net',
+    'category': '',
+    'summary': '',
+    'description': '''''',
+    'version': '18.0',
+    'depends': ['base',  'stock', 'sale'],
+    'data': [
+             'security/ir.model.access.csv',
+             'wizard/wizard.xml',
+             'report/report.xml',
+             'report/report_template.xml'
+             ],
+    'assets': {},
+    'images': [],
+    'price': 7,
+    'currency': 'EUR',
+    'license': 'OPL-1',
+    'application': False,
+    'auto_install': False,
+    'installable': True,
+}
