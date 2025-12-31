@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="brs_report_wizard" model="ir.ui.view">
+            <field name="name">BRS Report</field>
+            <field name="model">brs.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="BRS Report">
+                    <group>
+                        <group>
+                            <field name="ending_date" required="1"/>
+                            <field name="ending_balance"/>
+                        </group>
+                        <group>
+                            <field name="bank" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" type="object" string="Print" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="brs_report_action" model="ir.actions.act_window">
+            <field name="name">BRS Report</field>
+            <field name="res_model">brs.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="brs_report_id"
+                  name="BRS Report"
+                  parent="account.menu_finance_reports"
+                  action="brs_report_action"/>
+    </data>
+</odoo>
