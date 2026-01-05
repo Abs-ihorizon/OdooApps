@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="pos_config_form_pra_integration" model="ir.ui.view">
+            <field name="name">pos.config.pra.integration.form</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='row mt16 o_settings_container']" position="after">
+                    <div class="row mt16 o_settings_container">
+                        <h2 class="o_setting_header mt8">PRA Integration</h2>
+                        <setting string="Enable PRA Integration" help="Push POS orders to PRA">
+                            <field name="enable_pra_integration"/>
+                        </setting>
+                        <setting string="PRA Registration Number"
+                                 help="PRA Registration Number for this POS"
+                                 invisible="not enable_pra_integration">
+                            <field name="pra_registration_number"/>
+                        </setting>
+                        <setting string="PRA API Token"
+                                 help="Token provided by PRA for this POS"
+                                 invisible="not enable_pra_integration">
+                            <field name="pra_api_token"/>
+                        </setting>
+                        <setting string="PRA API URL"
+                                 help="PRA URL"
+                                 invisible="not enable_pra_integration">
+                            <field name="pra_api_url"/>
+                        </setting>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

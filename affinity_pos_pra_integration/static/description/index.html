@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POS-PRA Integration Module</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2d7a2d;
+        }
+        code {
+            background-color: #eaeaea;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #eaeaea;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffeeba;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>POS-PRA Integration Module</h1>
+<p>This module allows Odoo POS to integrate with <strong>Punjab Regulatory Authority (PRA)</strong> for automated
+    transaction submission and compliance.</p>
+
+<div style="margin-bottom:25px;">
+    <a href="mailto:info@affinitysuite.net
+?subject=Demo%20Request%20-%20POS%20PRA%20Integration%20Module
+&body=Hello%20Affinity%20Business%20Suite%2C%0A%0AI%20would%20like%20to%20book%20a%20demo%20for%20the%20POS%20PRA%20Integration%20Module.%0A%0APreferred%20Date%3A%20%0APreferred%20Time%20(AM%2FPM)%3A%20%0A%0AOdoo%20Version%3A%20%0APOS%20Configuration%3A%20%0A%0AThank%20you."
+       style="
+           display:inline-block;
+           padding:14px 22px;
+           background-color:#714B67;
+           color:#ffffff;
+           text-decoration:none;
+           border-radius:6px;
+           font-weight:bold;
+           font-size:15px;
+       ">
+        📅 Book a Demo
+    </a>
+</div>
+
+<h2>1. POS Configuration</h2>
+<p>To enable integration, you need to configure the POS session with the following fields:</p>
+<ul>
+    <li><strong>PRA URL:</strong> Enter the official API endpoint provided by PRA.</li>
+    <li><strong>Token:</strong> Enter your authentication token for API access.</li>
+</ul>
+
+<div class="note">
+    Note: Without a valid URL and Token, the module will not be able to communicate with PRA.
+</div>
+
+<h2>2. Invoice Submission</h2>
+<p>When a sale is completed on POS, the module automatically sends transaction data to PRA in real-time.</p>
+<ul>
+    <li>POS sends invoice details (items, total, date, etc.) to PRA via the configured URL and token.</li>
+    <li>PRA responds with an official <strong>invoice number</strong>.</li>
+    <li>The invoice number is printed on the POS receipt for compliance.</li>
+</ul>
+
+<h2>3. POS Receipt Example</h2>
+<pre>
+-----------------------------
+      Your Store Name
+-----------------------------
+Item 1        100 PKR
+Item 2         50 PKR
+-----------------------------
+Total:        150 PKR
+-----------------------------
+PRA Invoice #: PRA-123456789
+-----------------------------
+</pre>
+
+<h2>4. Usage – POS Configuration Screen</h2>
+<ul>
+    <li>Go to <strong>Point of Sale → Configuration → Point of Sale</strong>.</li>
+    <li>Open the POS configuration you are using.</li>
+    <li>Locate the <strong>PRA Integration</strong> section.</li>
+    <li>Enter the <strong>PRA URL</strong> and <strong>Token</strong>.</li>
+    <li>Save the configuration.</li>
+</ul>
+
+<img src="screenshot_1.png"
+     alt="POS Configuration PRA Settings"
+     style="max-width:100%; border:1px solid #ccc; border-radius:6px; margin-top:10px;">
+
+<h2>5. Features</h2>
+<ul>
+    <li>Automatic real-time submission to PRA.</li>
+    <li>POS receipt shows official PRA invoice number.</li>
+    <li>Error handling and logging for failed submissions.</li>
+    <li>Easy configuration inside POS settings.</li>
+</ul>
+
+<h2>6. Notes</h2>
+<ul>
+    <li>Ensure internet connectivity for real-time submission.</li>
+    <li>Use the official PRA credentials only.</li>
+    <li>The module works with Odoo POS 15+.</li>
+</ul>
+
+<h2>7. Support</h2>
+<ul>
+    <li>Website: <a href="https://affinitysuite.net" target="_blank">https://affinitysuite.net</a></li>
+    <li>Support Email:
+        <a href="mailto:info@affinitysuite.net?subject=Odoo%20POS%20PRA%20Integration%20Module%20Support">
+            info@affinitysuite.net
+        </a>
+    </li>
+</ul>
+
+</body>
+</html>
