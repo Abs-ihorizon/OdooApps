@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'POS PRA Integration',
+    'name': 'PRA Integration with POS',
     'version': '18.0',
     'summary': 'Integrates Odoo POS with Punjab Regulatory Authority (PRA) for automated sales reporting.',
     'description': '''
