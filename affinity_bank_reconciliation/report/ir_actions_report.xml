@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="brs_report_pdf" model="ir.actions.report">
+            <field name="name">BRS Report</field>
+            <field name="model">brs.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">affinity_bank_reconciliation.brs_report_template</field>
+            <field name="report_file">affinity_bank_reconciliation.brs_report_template</field>
+        </record>
+    </data>
+</odoo>
