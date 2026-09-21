@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="account_move_inherit_currency_rate" model="ir.ui.view">
+            <field name="name">.account.move.inherit.currency.rate</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_currency_rate']" position="attributes">
+                    <attribute name="digits">[16, 12]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
