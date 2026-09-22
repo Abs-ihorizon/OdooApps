@@ -6,13 +6,14 @@
     'website': 'https://affinitysuite.net',
     'support': 'info@affinitysuite.net',
     'category': 'Accounting/Accounting',
-    'summary': 'Automate WHT, bulk payments, partial payments and currency rate management in Odoo Accounting',
+    'summary': 'Automate WHT, multi-invoice payments, partial reconciliation and currency rates in Odoo',
     'description': '''
 Affinity Withholding Tax and Currency Rate Management
 
 Process individual, bulk and partial payments with automatic withholding tax
-calculation while managing transaction-specific currency rates in Odoo
-Accounting.
+calculation. Settle multiple invoices against a single payment, reconcile a
+partial amount against each invoice, and manage transaction-specific currency
+rates in Odoo Accounting.
 ''',
     'version': '19.0.1.0.2',
     'depends': ['account', 'sale', 'affinity_currency_rate'],
