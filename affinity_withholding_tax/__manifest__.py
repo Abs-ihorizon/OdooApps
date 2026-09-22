@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Affinity Withholding Tax and Currency Rate Management',
+    'name': 'Withholding Tax and Currency Rate Management',
     'author': 'Affinity Business Suite',
     'website': 'https://affinitysuite.net',
     'support': 'info@affinitysuite.net',
