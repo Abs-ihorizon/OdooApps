@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Affinity Warehouse Gate Pass Management',
+    'name': 'Gate Pass Management',
     'author': 'Affinity Business Suite',
     'website': 'https://affinitysuite.net',
     'support': 'info@affinitysuite.net',
