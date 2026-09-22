@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Affinity Currency Rate',
+    'name': 'Currency Rate',
     'author': 'Affinity Business Suite',
     'website': 'https://affinitysuite.net',
     'support': 'info@affinitysuite.net',
