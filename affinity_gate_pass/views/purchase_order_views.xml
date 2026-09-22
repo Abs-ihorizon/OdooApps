@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<odoo>
+    <data>
+        <record id='purchase_order_form_inherit_gate_pass' model='ir.ui.view'>
+            <field name='name'>purchase.order.form.inherit.gate.pass</field>
+            <field name='model'>purchase.order</field>
+            <field name='inherit_id' ref='purchase.purchase_order_form'/>
+            <field name='arch' type='xml'>
+                <xpath expr="//div[@name='button_box']" position='inside'>
+                    <button name='action_view_gate_pass_in' type='object' class='oe_stat_button' icon='fa-sign-in'
+                            invisible='gate_pass_in_count == 0'>
+                        <div class='o_field_widget o_stat_info'>
+                            <span class='o_stat_value'>
+                                <field name='gate_pass_in_count'/>
+                            </span>
+                            <span class='o_stat_text'>Gate In</span>
+                        </div>
+                    </button>
+                    <button name='action_view_gate_pass_out' type='object' class='oe_stat_button' icon='fa-sign-out'
+                            invisible='gate_pass_out_count == 0'>
+                        <div class='o_field_widget o_stat_info'>
+                            <span class='o_stat_value'>
+                                <field name='gate_pass_out_count'/>
+                            </span>
+                            <span class='o_stat_text'>Gate Out</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
