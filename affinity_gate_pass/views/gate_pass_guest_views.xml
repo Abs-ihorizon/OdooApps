@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_gate_pass_guest_list" model="ir.ui.view">
+            <field name="name">gate.pass.guest.list</field>
+            <field name="model">gate.pass.guest</field>
+            <field name="arch" type="xml">
+                <list string="Guest Gate Pass" sample="1">
+                    <field name="name" decoration-bf="1"/>
+                    <field name="guest_name"/>
+                    <field name="contact_number"/>
+                    <field name="cnic_or_id" optional="show"/>
+                    <field name="visitor_type"/>
+                    <field name="host_id"/>
+                    <field name="check_in"/>
+                    <field name="check_out" optional="show"/>
+                    <field name="badge_number" optional="hide"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'"
+                           decoration-success="state == 'in'" decoration-warning="state == 'out'"
+                           decoration-danger="state == 'cancel'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_gate_pass_guest_form" model="ir.ui.view">
+            <field name="name">gate.pass.guest.form</field>
+            <field name="model">gate.pass.guest</field>
+            <field name="arch" type="xml">
+                <form string="Guest Gate Pass">
+                    <header>
+                        <button name="action_check_in" string="Check In" type="object" class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button name="action_check_out" string="Check Out" type="object" class="btn-primary"
+                                invisible="state != 'in'"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-secondary"
+                                invisible="state in ('out', 'cancel')"/>
+                        <button name="action_reset_to_draft" string="Reset to Draft" type="object" class="btn-secondary"
+                                invisible="state != 'cancel'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,in,out"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Guest Information">
+                                <field name="guest_name" readonly="state != 'draft'"/>
+                                <field name="contact_number" readonly="state != 'draft'"/>
+                                <field name="cnic_or_id" readonly="state != 'draft'"/>
+                                <field name="visitor_type" readonly="state != 'draft'"/>
+                                <field name="partner_id" options="{'no_create': True}" readonly="state != 'draft'"/>
+                            </group>
+                            <group string="Visit Details">
+                                <field name="host_id" options="{'no_create': True}" readonly="state != 'draft'"/>
+                                <field name="check_in" readonly="state != 'draft'"/>
+                                <field name="check_out" readonly="state in ('out', 'cancel')"/>
+                                <field name="badge_number" readonly="state in ('out', 'cancel')"/>
+                                <field name="vehicle_number" readonly="state in ('out', 'cancel')"/>
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"
+                                       readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Purpose &amp; Belongings" name="page_purpose">
+                                <group>
+                                    <field name="purpose" placeholder="Enter details regarding the purpose of visit..."
+                                           readonly="state != 'draft'"/>
+                                    <field name="belongings"
+                                           placeholder="List items brought by guest (e.g. Laptop, Bag)..."
+                                           readonly="state in ('out', 'cancel')"/>
+                                </group>
+                            </page>
+                            <page string="Additional Notes" name="page_remarks">
+                                <group>
+                                    <field name="remarks" placeholder="Add entry notes or security instructions here..."
+                                           readonly="state in ('out', 'cancel')"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_gate_pass_guest_search" model="ir.ui.view">
+            <field name="name">gate.pass.guest.search</field>
+            <field name="model">gate.pass.guest</field>
+            <field name="arch" type="xml">
+                <search string="Guest Gate Pass Search">
+                    <field name="name"/>
+                    <field name="guest_name"/>
+                    <field name="contact_number"/>
+                    <field name="cnic_or_id"/>
+                    <field name="host_id"/>
+                    <field name="badge_number"/>
+                    <separator/>
+                    <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                    <filter name="filter_in" string="Checked In" domain="[('state', '=', 'in')]"/>
+                    <filter name="filter_out" string="Checked Out" domain="[('state', '=', 'out')]"/>
+                    <filter name="filter_cancel" string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+                    <separator/>
+                    <group>
+                        <filter name="group_by_state" string="Status" domain="[]" context="{'group_by': 'state'}"/>
+                        <filter name="group_by_visitor_type" string="Visitor Type" domain="[]"
+                                context="{'group_by': 'visitor_type'}"/>
+                        <filter name="group_by_host" string="Host" domain="[]" context="{'group_by': 'host_id'}"/>
+                        <filter name="group_by_check_in" string="Check In Date" domain="[]"
+                                context="{'group_by': 'check_in'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="gate_pass_guest_action_all" model="ir.actions.act_window">
+            <field name="name">Guest Gate Pass</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gate.pass.guest</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_gate_pass_guest_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Guest Gate Passes found.
+                </p>
+            </field>
+        </record>
+
+        <record id="gate_pass_guest_action_inside" model="ir.actions.act_window">
+            <field name="name">Guests Inside</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gate.pass.guest</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_filter_in': 1}</field>
+            <field name="search_view_id" ref="view_gate_pass_guest_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No guests currently inside.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="gate_pass_root"
+                  name="Gate Pass"
+                  web_icon="affinity_gate_pass,static/description/icon.png"
+                  sequence="25"/>
+
+        <menuitem id="gate_pass_guest_parent_menu"
+                  name="Guest Pass"
+                  parent="gate_pass_root"
+                  sequence="30"/>
+
+        <menuitem id="gate_pass_guest_inside_menu"
+                  name="Guests Inside"
+                  parent="gate_pass_guest_parent_menu"
+                  action="gate_pass_guest_action_inside"
+                  sequence="10"/>
+
+        <menuitem id="gate_pass_guest_all_menu"
+                  name="All Guest Passes"
+                  parent="gate_pass_guest_parent_menu"
+                  action="gate_pass_guest_action_all"
+                  sequence="20"/>
+    </data>
+</odoo>

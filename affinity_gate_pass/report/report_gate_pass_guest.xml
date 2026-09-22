@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_gate_pass_guest_main_template">
+            <div class="page"
+                 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #2c3e50; font-size: 13px;">
+                <div style="border-bottom: 2px solid #2c3e50; padding-bottom: 12px; margin-bottom: 20px;"
+                     class="row align-items-center">
+                    <div class="col-6">
+                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                             style="max-height: 65px;" alt="Logo"/>
+                        <img t-else="" src="/affinity_gate_pass/static/description/company.png"
+                             style="max-height: 65px;" alt="Logo"/>
+                    </div>
+                    <div class="col-6 text-end">
+                        <h3 style="margin: 0; font-weight: 800; color: #2c3e50; letter-spacing: 0.5px;" t-esc="o.name"/>
+                        <span style="font-size: 12px; color: #7f8c8d; font-weight: bold;">
+                            Status:
+                            <span t-esc="dict(o._fields['state'].selection).get(o.state) or 'Draft'"/>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin-bottom: 20px;">
+                    <div class="row align-items-center">
+                        <div class="col-6" style="border-right: 1px solid #dee2e6;">
+                            <h6 style="color: #2c3e50; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">
+                                Visitor Details
+                            </h6>
+                            <strong t-esc="o.guest_name" style="font-size: 15px; color: #2c3e50;"/>
+                            <br/>
+                            <span t-if="o.partner_id" t-esc="o.partner_id.name" style="color: #555;"/>
+                            <br t-if="o.partner_id"/>
+                            <span t-if="o.contact_number" t-esc="o.contact_number" style="color: #555;"/>
+                        </div>
+                        <div class="col-6 ps-4">
+                            <table class="table table-borderless table-sm"
+                                   style="width: 100%; color: #2c3e50; margin-bottom: 0; font-size: 13px; line-height: 1.5;">
+                                <tr style="border: none;">
+                                    <td style="padding: 3px 0; font-weight: bold; width: 40%; border: none; text-align: left;">
+                                        Host / To Meet:
+                                    </td>
+                                    <td style="padding: 3px 0; border: none; font-weight: 600; text-align: left;">
+                                        <span t-esc="o.host_id.name or 'N/A'"/>
+                                    </td>
+                                </tr>
+                                <tr style="border: none;">
+                                    <td style="padding: 3px 0; font-weight: bold; border: none; text-align: left;">
+                                        CNIC / ID:
+                                    </td>
+                                    <td style="padding: 3px 0; border: none; font-weight: 600; text-align: left;">
+                                        <span t-esc="o.cnic_or_id or 'N/A'"/>
+                                    </td>
+                                </tr>
+                                <tr style="border: none;">
+                                    <td style="padding: 3px 0; font-weight: bold; border: none; text-align: left;">
+                                        Visitor Type:
+                                    </td>
+                                    <td style="padding: 3px 0; border: none; font-weight: 600; text-align: left;">
+                                        <span t-esc="dict(o._fields['visitor_type'].selection).get(o.visitor_type) or 'N/A'"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="o.badge_number" style="border: none;">
+                                    <td style="padding: 3px 0; font-weight: bold; border: none; text-align: left;">
+                                        Badge / Card No:
+                                    </td>
+                                    <td style="padding: 3px 0; border: none; font-weight: 600; text-align: left;">
+                                        <span t-esc="o.badge_number"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 20px; background-color: #ffffff;">
+                    <h6 style="color: #2c3e50; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid #f8f9fa; padding-bottom: 6px;">
+                        Visit Timing &amp; Vehicle Info
+                    </h6>
+                    <div class="row">
+                        <div class="col-4">
+                            <span style="font-size: 11px; text-transform: uppercase; color: #7f8c8d; font-weight: bold;">
+                                Check-In Time
+                            </span>
+                            <br/>
+                            <strong style="color: #2c3e50; font-size: 13px;">
+                                <span t-if="o.check_in" t-esc="o.check_in" t-options='{"widget": "datetime"}'/>
+                                <span t-else="">-</span>
+                            </strong>
+                        </div>
+                        <div class="col-4">
+                            <span style="font-size: 11px; text-transform: uppercase; color: #7f8c8d; font-weight: bold;">
+                                Check-Out Time
+                            </span>
+                            <br/>
+                            <strong style="color: #2c3e50; font-size: 13px;">
+                                <span t-if="o.check_out" t-esc="o.check_out" t-options='{"widget": "datetime"}'/>
+                                <span t-else="">-</span>
+                            </strong>
+                        </div>
+                        <div class="col-4">
+                            <span style="font-size: 11px; text-transform: uppercase; color: #7f8c8d; font-weight: bold;">
+                                Vehicle Number
+                            </span>
+                            <br/>
+                            <strong style="color: #2c3e50; font-size: 13px;" t-esc="o.vehicle_number or 'N/A'"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 20px; background-color: #ffffff;">
+                    <h6 style="color: #2c3e50; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid #f8f9fa; padding-bottom: 6px;">
+                        Visit &amp; Belongings Information
+                    </h6>
+                    <div class="row">
+                        <div class="col-6" style="border-right: 1px solid #f8f9fa;">
+                            <span style="font-size: 11px; text-transform: uppercase; color: #7f8c8d; font-weight: bold;">
+                                Purpose of Visit
+                            </span>
+                            <div style="color: #2c3e50; font-size: 13px; margin-top: 4px; white-space: pre-line;"
+                                 t-esc="(o.purpose or 'N/A').strip()"/>
+                        </div>
+                        <div class="col-6 ps-3">
+                            <span style="font-size: 11px; text-transform: uppercase; color: #7f8c8d; font-weight: bold;">
+                                Belongings / Items Brought
+                            </span>
+                            <div style="color: #2c3e50; font-size: 13px; margin-top: 4px; white-space: pre-line;"
+                                 t-esc="(o.belongings or 'N/A').strip()"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div t-if="o.remarks"
+                     style="border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 20px; background-color: #ffffff; page-break-inside: avoid;">
+                    <h6 style="color: #2c3e50; font-weight: bold; margin-bottom: 6px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">
+                        Remarks
+                    </h6>
+                    <div style="color: #444; font-size: 12px; line-height: 1.4; white-space: pre-line;"
+                         t-esc="(o.remarks or '').strip()"/>
+                </div>
+
+                <div class="row"
+                     style="font-size: 12px; text-align: center; color: #2c3e50; margin-top: 50px; page-break-inside: avoid;">
+                    <div class="col-4">
+                        <div style="min-height: 30px;">&#160;</div>
+                        <div style="border-top: 1px solid #2c3e50; width: 80%; margin: 0 auto; padding-top: 6px;">
+                            <strong style="text-transform: uppercase;">Visitor Signature</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div style="min-height: 30px;">&#160;</div>
+                        <div style="border-top: 1px solid #2c3e50; width: 80%; margin: 0 auto; padding-top: 6px;">
+                            <strong style="text-transform: uppercase;">Host Signature</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div style="min-height: 30px;">&#160;</div>
+                        <div style="border-top: 1px solid #2c3e50; width: 80%; margin: 0 auto; padding-top: 6px;">
+                            <strong style="text-transform: uppercase;">Security Officer</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_gate_pass_guest_template">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="affinity_gate_pass.report_gate_pass_guest_main_template"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

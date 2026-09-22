@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<odoo>
+    <data>
+        <record id='view_picking_form_inherit_gate_pass' model='ir.ui.view'>
+            <field name='name'>stock.picking.form.inherit.gate.pass</field>
+            <field name='model'>stock.picking</field>
+            <field name='inherit_id' ref='stock.view_picking_form'/>
+            <field name='arch' type='xml'>
+                <xpath expr="//div[@name='button_box']" position='inside'>
+                    <button name='action_view_gate_pass_in' type='object' class='oe_stat_button' icon='fa-sign-in'
+                            invisible='not gate_pass_in_id'>
+                        <div class='o_stat_info'>
+                            <span class='o_stat_text'>Gate Pass In</span>
+                        </div>
+                    </button>
+                    <button name='action_view_gate_pass_out' type='object' class='oe_stat_button' icon='fa-sign-out'
+                            invisible='not gate_pass_out_id'>
+                        <div class='o_stat_info'>
+                            <span class='o_stat_text'>Gate Pass Out</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

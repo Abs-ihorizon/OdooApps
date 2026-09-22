@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="action_report_gate_in" model="ir.actions.report">
+            <field name="name">Gate In</field>
+            <field name="model">gate.pass.in</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">affinity_gate_pass.report_gate_in_template</field>
+            <field name="report_file">affinity_gate_pass.report_gate_in_template</field>
+            <field name="print_report_name">'Gate Pass - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="affinity_gate_pass.model_gate_pass_in"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="affinity_gate_pass.paperformat_euro_custom"/>
+        </record>
+
+        <record id="action_report_gate_out" model="ir.actions.report">
+            <field name="name">Gate Out</field>
+            <field name="model">gate.pass.out</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">affinity_gate_pass.report_gate_out_template</field>
+            <field name="report_file">affinity_gate_pass.report_gate_out_template</field>
+            <field name="print_report_name">'Gate Pass - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="affinity_gate_pass.model_gate_pass_out"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="affinity_gate_pass.paperformat_euro_custom"/>
+        </record>
+
+        <record id="action_report_gate_pass_guest" model="ir.actions.report">
+            <field name="name">Gate Pass Guest</field>
+            <field name="model">gate.pass.guest</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">affinity_gate_pass.report_gate_pass_guest_template</field>
+            <field name="report_file">affinity_gate_pass.report_gate_pass_guest_template</field>
+            <field name="print_report_name">'Gate Pass - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="affinity_gate_pass.model_gate_pass_guest"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="affinity_gate_pass.paperformat_euro_custom"/>
+        </record>
+    </data>
+</odoo>
