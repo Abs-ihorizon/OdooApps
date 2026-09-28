@@ -1,0 +1,24 @@
+.o_action_relationship_map {
+    &.o_fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1050; /* Above navbar */
+    }
+    
+    .o_relationship_map {
+        /* Remove vis.js default outlines on focus */
+        canvas {
+            outline: none !important;
+        }
+        
+        /* Dark mode support for background */
+        @at-root body.o_dark_mode & {
+            .o_map_body {
+                background-color: #212529 !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Purchase Order -->
+    <record id="view_purchase_order_form_inherit_relationship_map" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.relationship.map</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_document_relationship_map)d" 
+                        type="action" 
+                        class="oe_stat_button" 
+                        icon="fa-share-alt"
+                        groups="relationship_document_map.group_relationship_map_user"
+                        context="{'active_model': 'purchase.order', 'active_id': id}">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Rel Map</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

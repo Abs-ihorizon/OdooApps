@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Stock Picking -->
+    <record id="view_picking_form_inherit_relationship_map" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.relationship.map</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_document_relationship_map)d" 
+                        type="action" 
+                        class="oe_stat_button" 
+                        icon="fa-share-alt"
+                        groups="relationship_document_map.group_relationship_map_user"
+                        context="{'active_model': 'stock.picking', 'active_id': id}">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Rel Map</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Account Move (Invoice) -->
+    <record id="view_move_form_inherit_relationship_map" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.relationship.map</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_document_relationship_map)d" 
+                        type="action" 
+                        class="oe_stat_button" 
+                        icon="fa-share-alt"
+                        groups="relationship_document_map.group_relationship_map_user"
+                        context="{'active_model': 'account.move', 'active_id': id}">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Rel Map</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Account Payment -->
+    <record id="view_account_payment_form_inherit_relationship_map" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit.relationship.map</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_document_relationship_map)d" 
+                        type="action" 
+                        class="oe_stat_button" 
+                        icon="fa-share-alt"
+                        groups="relationship_document_map.group_relationship_map_user"
+                        context="{'active_model': 'account.payment', 'active_id': id}">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Rel Map</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
