@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Client Action for Relationship Map -->
+    <record id="action_document_relationship_map" model="ir.actions.client">
+        <field name="name">Relationship Map</field>
+        <field name="tag">document_relationship_map_action</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="view_order_form_inherit_relationship_map" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.relationship.map</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Place it before the first element in button_box to ensure it's first, or fallback to inside -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_document_relationship_map)d" 
+                        type="action" 
+                        class="oe_stat_button" 
+                        icon="fa-share-alt"
+                        groups="abs_document_relationship_map.group_relationship_map_user"
+                        context="{'active_model': 'sale.order', 'active_id': id}">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Rel Map</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
