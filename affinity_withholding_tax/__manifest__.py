@@ -24,7 +24,7 @@ rates in Odoo Accounting.
     ],
     'assets': {},
     'images': ['static/description/app_dp.png'],
-    'price': 122.58,
+    'price': 40,
     'currency': 'EUR',
     'license': 'OPL-1',
     'application': True,
