@@ -15,7 +15,7 @@ configure status labels and generate Actions menu entries or form smart buttons.
     "author": "Affinity Business Suite",
     "website": "https://affinitysuite.net",
     "support": "info@affinitysuite.net",
-    "price": 125.0,
+    "price": 65.0,
     "currency": "EUR",
     "depends": ["abs_document_relationship_map"],
     "data": [
