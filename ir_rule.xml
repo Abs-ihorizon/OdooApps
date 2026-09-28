@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="gate_pass_in_company_rule" model="ir.rule">
+            <field name="name">Gate Pass In Multi-Company</field>
+            <field name="model_id" ref="model_gate_pass_in"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="gate_pass_out_company_rule" model="ir.rule">
+            <field name="name">Gate Pass Out Multi-Company</field>
+            <field name="model_id" ref="model_gate_pass_out"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="gate_pass_guest_company_rule" model="ir.rule">
+            <field name="name">Gate Pass Guest Multi-Company</field>
+            <field name="model_id" ref="model_gate_pass_guest"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="gate_pass_in_user_rule" model="ir.rule">
+            <field name="name">Gate Pass In User Personal Records</field>
+            <field name="model_id" ref="model_gate_pass_in"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        </record>
+
+        <record id="gate_pass_in_manager_rule" model="ir.rule">
+            <field name="name">Gate Pass In Manager All Records</field>
+            <field name="model_id" ref="model_gate_pass_in"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        </record>
+
+        <record id="gate_pass_out_user_rule" model="ir.rule">
+            <field name="name">Gate Pass Out User Personal Records</field>
+            <field name="model_id" ref="model_gate_pass_out"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        </record>
+
+        <record id="gate_pass_out_manager_rule" model="ir.rule">
+            <field name="name">Gate Pass Out Manager All Records</field>
+            <field name="model_id" ref="model_gate_pass_out"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        </record>
+
+        <record id="gate_pass_guest_user_rule" model="ir.rule">
+            <field name="name">Gate Pass Guest User Personal Records</field>
+            <field name="model_id" ref="model_gate_pass_guest"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        </record>
+
+        <record id="gate_pass_guest_manager_rule" model="ir.rule">
+            <field name="name">Gate Pass Guest Manager All Records</field>
+            <field name="model_id" ref="model_gate_pass_guest"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        </record>
+    </data>
+</odoo>

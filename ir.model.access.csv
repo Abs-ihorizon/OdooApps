@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gate_pass_in_user,access.gate.pass.in.user,model_gate_pass_in,stock.group_stock_user,1,1,1,0
+access_gate_pass_in_manager,access.gate.pass.in.manager,model_gate_pass_in,stock.group_stock_manager,1,1,1,1
+access_gate_pass_in_line_user,access.gate.pass.in.line.user,model_gate_pass_in_line,stock.group_stock_user,1,1,1,0
+access_gate_pass_in_line_manager,access.gate.pass.in.line.manager,model_gate_pass_in_line,stock.group_stock_manager,1,1,1,1
+access_gate_pass_out_user,access.gate.pass.out.user,model_gate_pass_out,stock.group_stock_user,1,1,1,0
+access_gate_pass_out_manager,access.gate.pass.out.manager,model_gate_pass_out,stock.group_stock_manager,1,1,1,1
+access_gate_pass_out_line_user,access.gate.pass.out.line.user,model_gate_pass_out_line,stock.group_stock_user,1,1,1,0
+access_gate_pass_out_line_manager,access.gate.pass.out.line.manager,model_gate_pass_out_line,stock.group_stock_manager,1,1,1,1
+access_gate_pass_guest_user,access.gate.pass.guest.user,model_gate_pass_guest,stock.group_stock_user,1,1,1,0
+access_gate_pass_guest_manager,access.gate.pass.guest.manager,model_gate_pass_guest,stock.group_stock_manager,1,1,1,

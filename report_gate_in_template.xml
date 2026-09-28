@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <template id="report_gate_in_main_template">
+            <div class="page"
+                 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #2c3e50; font-size: 13px;">
+                <div style="border-bottom: 2px solid #2c3e50; padding-bottom: 12px; margin-bottom: 25px;"
+                     class="row align-items-center">
+                    <div class="col-6">
+                        <img src="/affinity_gate_pass/static/description/company.png" style="max-height: 65px;"
+                             alt="Logo"/>
+                    </div>
+                    <div class="col-6 text-end">
+                        <h3 style="margin: 0; font-weight: 800; color: #2c3e50; letter-spacing: 0.5px;" t-esc="o.name"/>
+                        <span style="font-size: 12px; color: #7f8c8d; font-weight: bold;">
+                            <t t-esc="o.date" t-options='{"widget": "datetime"}'/>
+                        </span>
+                    </div>
+                </div>
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #e9ecef; margin-bottom: 25px;">
+                    <div class="row align-items-center">
+                        <div class="col-6" style="border-right: 1px solid #dee2e6;">
+                            <h6 style="color: #2c3e50; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">
+                                Source / Partner
+                            </h6>
+                            <strong t-esc="o.partner_id.name" style="font-size: 14px; color: #2c3e50;"/>
+                            <br/>
+                            <span t-if="o.partner_id.street" t-esc="o.partner_id.street" style="color: #555;"/>
+                            <br/>
+                            <span t-if="o.partner_id.city" t-esc="o.partner_id.city" style="color: #555;"/>
+                        </div>
+                        <div class="col-6 ps-4">
+                            <table class="table table-borderless table-sm"
+                                   style="width: 100%; color: #2c3e50; margin-bottom: 0; font-size: 13px; line-height: 1.5;">
+                                <tr style="border: none;">
+                                    <td style="padding: 4px 0; font-weight: bold; width: 40%; border: none; text-align: left; vertical-align: middle;">
+                                        Order Ref:
+                                    </td>
+                                    <td style="padding: 4px 0; border: none; font-weight: 600; text-align: left; vertical-align: middle;">
+                                        <span t-esc="o.reference or 'N/A'"/>
+                                    </td>
+                                </tr>
+                                <tr style="border: none;">
+                                    <td style="padding: 4px 0; font-weight: bold; border: none; text-align: left; vertical-align: middle;">
+                                        Dest Loc:
+                                    </td>
+                                    <td style="padding: 4px 0; border: none; font-weight: 600; text-align: left; vertical-align: middle;">
+                                        <span t-esc="o.location_id.name or 'N/A'"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="o.remarks" style="border: none;">
+                                    <td style="padding: 4px 0; font-weight: bold; border: none; text-align: left; vertical-align: middle;">
+                                        Remarks:
+                                    </td>
+                                    <td style="padding: 4px 0; border: none; font-weight: 600; text-align: left; vertical-align: middle;">
+                                        <span t-esc="o.remarks"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-borderless" style="margin-bottom: 25px; width: 100%; font-size: 13px;">
+                    <thead style="border-bottom: 2px solid #2c3e50; color: #2c3e50; text-transform: uppercase; font-size: 11px; background-color: #f8f9fa;">
+                        <tr>
+                            <th style="width: 5%; padding: 10px 8px; vertical-align: middle;">S.No</th>
+                            <th style="width: 20%; padding: 10px 8px; vertical-align: middle;">Part Number</th>
+                            <th style="width: 35%; padding: 10px 8px; vertical-align: middle;">Description</th>
+                            <th style="width: 10%; padding: 10px 8px; vertical-align: middle;" class="text-end">Qty</th>
+                            <th style="width: 10%; padding: 10px 8px; vertical-align: middle;" class="text-end">
+                                Received
+                            </th>
+                            <th style="width: 12%; padding: 10px 8px; vertical-align: middle;" class="text-center">
+                                Security
+                            </th>
+                            <th style="width: 18%; padding: 10px 8px; vertical-align: middle;">Signature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="seq" t-value="1"/>
+                        <tr t-foreach="o.line_ids" t-as="line" style="border-bottom: 1px solid #ecf0f1;">
+                            <td style="padding: 10px 8px; vertical-align: middle; font-weight: bold; color: #7f8c8d;"
+                                t-esc="seq"/>
+                            <td style="padding: 10px 8px; vertical-align: middle; font-weight: 600;">
+                                <span t-esc="line.product_id.default_code or 'N/A'"/>
+                            </td>
+                            <td style="padding: 10px 8px; vertical-align: middle;">
+                                <span style="font-weight: bold; color: #2c3e50;" t-esc="line.product_id.name"/>
+                                <br/>
+                                <span style="color: #7f8c8d; font-size: 11px;"
+                                      t-if="line.description and line.description != line.product_id.name"
+                                      t-esc="line.description"/>
+                            </td>
+                            <td style="padding: 10px 8px; vertical-align: middle; font-weight: bold;" class="text-end">
+                                <span t-esc="line.quantity"/>
+                                <span style="font-size: 11px; color: #7f8c8d;" t-esc="line.uom_id.name"/>
+                            </td>
+                            <td style="padding: 10px 8px; vertical-align: middle; font-weight: bold;" class="text-end">
+                                <span t-esc="line.received_qty"/>
+                                <span style="font-size: 11px; color: #7f8c8d;" t-esc="line.uom_id.name"/>
+                            </td>
+                            <td style="padding: 10px 8px; vertical-align: middle;" class="text-center">
+                                <div style="width: 18px; height: 18px; border: 1px solid #bdc3c7; margin: 0 auto; border-radius: 3px;"/>
+                            </td>
+                            <td style="padding: 10px 8px; vertical-align: middle;">
+                                <div style="border-bottom: 1px dashed #bdc3c7; width: 90%; height: 18px;"/>
+                            </td>
+                            <t t-set="seq" t-value="seq + 1"/>
+                        </tr>
+                    </tbody>
+                </table>
+                <t t-if="o.should_print_note()">
+                    <div style="margin-top: 15px; margin-bottom: 25px; font-size: 12px; page-break-inside: avoid;">
+                        <div style="font-weight: bold; text-transform: uppercase; color: #2c3e50; margin-bottom: 5px; font-size: 11px; letter-spacing: 0.5px;">
+                            Terms and Conditions
+                        </div>
+                        <div style="color: #444; line-height: 1.4;">
+                            <t t-out="o.note"/>
+                        </div>
+                    </div>
+                </t>
+                <div class="row"
+                     style="font-size: 12px; text-align: center; color: #2c3e50; margin-top: 60px; page-break-inside: avoid;">
+                    <div class="col-4">
+                        <div style="min-height: 30px;">&#160;</div>
+                        <div style="border-top: 1px solid #2c3e50; width: 80%; margin: 0 auto; padding-top: 6px;">
+                            <strong style="text-transform: uppercase;">Received By</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div style="min-height: 30px;">&#160;</div>
+                        <div style="border-top: 1px solid #2c3e50; width: 80%; margin: 0 auto; padding-top: 6px;">
+                            <strong style="text-transform: uppercase;">Inspected By</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div style="min-height: 30px;">&#160;</div>
+                        <div style="border-top: 1px solid #2c3e50; width: 80%; margin: 0 auto; padding-top: 6px;">
+                            <strong style="text-transform: uppercase;">Admin &amp; Security</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_gate_in_template">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="affinity_gate_pass.report_gate_in_main_template"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
