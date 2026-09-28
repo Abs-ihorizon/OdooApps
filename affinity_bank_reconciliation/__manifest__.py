@@ -26,7 +26,7 @@
         'static/description/banner.png',
         'static/description/cover.png'
     ],
-    'price': 65,
+    'price': 35,
     'currency': 'EUR',
     'license': 'OPL-1',
     'application': True,
