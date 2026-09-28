@@ -38,7 +38,7 @@ entries, controlled warehouse workflows, searchable history and printable report
     },
     'price': 15,
     'currency': 'EUR',
-    'images': ['static/description/delivery_gate_pass_out.png'],
+    'images': ['static/description/app_dp.png'],
     'license': 'OPL-1',
     'application': True,
     'auto_install': False,
