@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_document_relationship_model_list" model="ir.ui.view">
+        <field name="name">document.relationship.model.list</field>
+        <field name="model">document.relationship.model</field>
+        <field name="arch" type="xml">
+            <list string="Document Types">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="document_type_label"/>
+                <field name="enable_relationship_map"/>
+                <field name="show_in_actions_menu"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_document_relationship_model_form" model="ir.ui.view">
+        <field name="name">document.relationship.model.form</field>
+        <field name="model">document.relationship.model</field>
+        <field name="arch" type="xml">
+            <form string="Document Type">
+                <header>
+                    <button name="action_sync_action_menu" type="object"
+                            string="Generate / Update Action"
+                            class="oe_highlight"
+                            groups="relationship_document_map.group_relationship_map_manager"/>
+                    <button name="action_sync_smart_button" type="object"
+                            string="Generate / Update Smart Button"
+                            class="oe_highlight"
+                            groups="relationship_document_map.group_relationship_map_manager"
+                            invisible="not show_smart_button"/>
+                    <button name="action_remove_smart_button" type="object"
+                            string="Remove Smart Button"
+                            groups="relationship_document_map.group_relationship_map_manager"
+                            invisible="not generated_view_id"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Gate Pass"/></h1>
+                    </div>
+                    <group>
+                        <group string="Model">
+                            <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="model_name" readonly="1"/>
+                            <field name="document_type_label"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group string="Availability">
+                            <field name="active"/>
+                            <field name="enable_relationship_map"/>
+                            <field name="show_in_actions_menu"/>
+                            <field name="show_smart_button"/>
+                            <field name="form_view_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   invisible="not show_smart_button"
+                                   required="show_smart_button"/>
+                            <field name="smart_button_label" invisible="not show_smart_button"/>
+                            <field name="smart_button_icon" invisible="not show_smart_button"/>
+                            <field name="generated_view_id" readonly="1" invisible="not show_smart_button"/>
+                            <field name="allow_public_sharing"/>
+                            <field name="maximum_depth"/>
+                            <field name="action_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Node Display">
+                            <group>
+                                <group>
+                                    <field name="name_field_id" domain="[('model_id', '=', model_id), ('ttype', 'in', ['char', 'text'])]" options="{'no_create': True}"/>
+                                    <field name="date_field_id" domain="[('model_id', '=', model_id), ('ttype', 'in', ['date', 'datetime'])]" options="{'no_create': True}"/>
+                                    <field name="partner_field_id" domain="[('model_id', '=', model_id), ('ttype', '=', 'many2one'), ('relation', '=', 'res.partner')]" options="{'no_create': True}"/>
+                                    <field name="status_field_id" domain="[('model_id', '=', model_id), ('ttype', 'in', ['selection', 'many2one', 'char'])]" options="{'no_create': True}"/>
+                                </group>
+                                <group>
+                                    <field name="amount_field_id" domain="[('model_id', '=', model_id), ('ttype', 'in', ['float', 'monetary', 'integer'])]" options="{'no_create': True}"/>
+                                    <field name="currency_field_id" domain="[('model_id', '=', model_id), ('ttype', '=', 'many2one'), ('relation', '=', 'res.currency')]" options="{'no_create': True}"/>
+                                    <field name="company_field_id" domain="[('model_id', '=', model_id), ('ttype', '=', 'many2one'), ('relation', '=', 'res.company')]" options="{'no_create': True}"/>
+                                    <field name="icon"/>
+                                    <field name="default_color" placeholder="#607d8b"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Outgoing Rules">
+                            <field name="source_rule_ids" context="{'default_source_model_config_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="target_model_config_id"/>
+                                    <field name="field_owner"/>
+                                    <field name="relationship_field_id"/>
+                                    <field name="edge_label"/>
+                                    <field name="direction"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Incoming Rules">
+                            <field name="target_rule_ids" readonly="1">
+                                <list>
+                                    <field name="source_model_config_id"/>
+                                    <field name="name"/>
+                                    <field name="edge_label"/>
+                                    <field name="direction"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Status Mapping">
+                            <field name="status_mapping_ids" context="{'default_model_config_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="technical_value"/>
+                                    <field name="display_label"/>
+                                    <field name="status_category"/>
+                                    <field name="color" placeholder="#198754"/>
+                                    <field name="icon"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_document_relationship_model" model="ir.actions.act_window">
+        <field name="name">Document Types</field>
+        <field name="res_model">document.relationship.model</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+</odoo>
